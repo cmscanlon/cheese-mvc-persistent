@@ -3,7 +3,6 @@ package org.launchcode.controllers;
 import org.launchcode.models.Category;
 import org.launchcode.models.Cheese;
 import org.launchcode.models.Menu;
-import org.launchcode.models.data.CategoryDao;
 import org.launchcode.models.data.CheeseDao;
 import org.launchcode.models.data.MenuDao;
 import org.launchcode.models.forms.AddMenuItemForm;
@@ -41,7 +40,7 @@ public class MenuController {
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String add(Model model, @ModelAttribute @Valid Menu menu,
-                                       Errors errors,) {
+                                       Errors errors) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Menu");
@@ -71,7 +70,7 @@ public class MenuController {
 
         AddMenuItemForm form = new AddMenuItemForm(cheeseDao.findAll(), menu);
 
-        model.addAttribute("title", "Add item to menu: ", + menu.getName());
+        model.addAttribute("title", "Add item to menu: " + menu.getName());
         model.addAttribute("form", form);
 
         return "menu/add-item";
@@ -90,7 +89,7 @@ public class MenuController {
         theMenu.addItem(theCheese);
         menuDao.save(theMenu);
 
-        return "redirect:/menu/view" + theMenu.getId();
+        return "redirect:/menu/view/" + theMenu.getId();
     }
 
 
