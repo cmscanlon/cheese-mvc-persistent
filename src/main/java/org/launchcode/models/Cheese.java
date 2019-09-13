@@ -27,6 +27,7 @@ public class Cheese {
     private Category category;
 
     @ManyToMany(mappedBy = "cheeses")
+//    What field to map by in the cheese table
     private List<Menu> menus;
 
     public Cheese(String name, String description) {
